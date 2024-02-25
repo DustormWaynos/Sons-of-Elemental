@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://un76wuffl8x7"]
+
+[ext_resource type="Script" path="res://Scripts/Interactable/checkpoint.gd" id="1_8k18f"]
+[ext_resource type="Texture2D" uid="uid://88xokep5h6g8" path="res://PlayerAnim/Run/checkpoint 3.png" id="2_yafa1"]
+[ext_resource type="Texture2D" uid="uid://6sal4b5pf6ip" path="res://PlayerAnim/Run/checkpoint0.png" id="3_id3pr"]
+[ext_resource type="Texture2D" uid="uid://b62wsmhkh1t2k" path="res://PlayerAnim/Run/checkpoint.png" id="4_agica"]
+[ext_resource type="Texture2D" uid="uid://be82ybo1u6ley" path="res://PlayerAnim/Run/checkpoint 2.png" id="5_f6l3g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3prl"]
+size = Vector2(18, 30)
+
+[sub_resource type="Animation" id="Animation_2y6vc"]
+resource_name = "Activated"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_id3pr"), ExtResource("4_agica"), ExtResource("5_f6l3g"), ExtResource("2_yafa1")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eme1f"]
+_data = {
+"Activated": SubResource("Animation_2y6vc")
+}
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_8k18f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_f6l3g")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_i3prl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eme1f")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
