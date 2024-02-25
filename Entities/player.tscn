@@ -24,6 +24,22 @@ height = 46.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gxd5j"]
 height = 48.0
 
+[sub_resource type="Animation" id="Animation_q2u4m"]
+resource_name = "Fall"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_j8pqv")]
+}
+
 [sub_resource type="Animation" id="Animation_xbxyd"]
 resource_name = "Idle"
 length = 1.2
@@ -41,6 +57,22 @@ tracks/0/keys = {
 "values": [ExtResource("3_8vyxs"), ExtResource("4_riwgu"), ExtResource("5_abmom"), ExtResource("6_h4r06"), ExtResource("7_mvfeg")]
 }
 
+[sub_resource type="Animation" id="Animation_8s01y"]
+resource_name = "Jump"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_iev1s")]
+}
+
 [sub_resource type="Animation" id="Animation_kpejs"]
 resource_name = "Run"
 length = 0.7
@@ -56,38 +88,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("8_xij3g"), ExtResource("9_1ge8n"), ExtResource("10_d6ugk"), ExtResource("11_fle7p"), ExtResource("12_h1mp0"), ExtResource("13_hhgmw"), ExtResource("14_w8bg0"), ExtResource("15_ni720")]
-}
-
-[sub_resource type="Animation" id="Animation_q2u4m"]
-resource_name = "Fall"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_j8pqv")]
-}
-
-[sub_resource type="Animation" id="Animation_8s01y"]
-resource_name = "Jump"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("8_iev1s")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ndawt"]
