@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://djnqryrdvcghr"]
+
+[ext_resource type="Script" path="res://Scripts/Mainmenu/main_scene.gd" id="1_4ly74"]
+[ext_resource type="PackedScene" uid="uid://cqclvwm6ivc3l" path="res://GameplayScenes/mainmenubackground.tscn" id="2_hp4qb"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_4ly74")
+
+[node name="Trò chơi mới" type="Button" parent="."]
+offset_left = 381.0
+offset_top = 210.0
+offset_right = 581.0
+offset_bottom = 260.0
+text = "Trò Chơi Mới"
+
+[node name="Thoát trò chơi" type="Button" parent="."]
+offset_left = 381.0
+offset_top = 277.0
+offset_right = 581.0
+offset_bottom = 327.0
+text = "Thoát trò chơi"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_hp4qb")]
+
+[connection signal="pressed" from="Trò chơi mới" to="." method="_on_trò_chơi_mới_pressed"]
+[connection signal="pressed" from="Thoát trò chơi" to="." method="_on_thoát_trò_chơi_pressed"]

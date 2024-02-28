@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmfa4np20qre6"]
+
+[ext_resource type="Texture2D" uid="uid://pvt5spbjsbrm" path="res://Pixelart/platformmid.png" id="1_6gyhj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhqcb"]
+size = Vector2(111, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dg1ot"]
+size = Vector2(112, 17)
+
+[node name="PlatformMid" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, -12)
+shape = SubResource("RectangleShape2D_bhqcb")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 3)
+texture = ExtResource("1_6gyhj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -16.5)
+shape = SubResource("RectangleShape2D_dg1ot")
