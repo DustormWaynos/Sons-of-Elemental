@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6sggkk5d6p4r"]
+
+[ext_resource type="Texture2D" uid="uid://dvb5v1n5f7sg" path="res://Pixelart/Tilemap/Barrel.png" id="1_wh85i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tiv03"]
+size = Vector2(12, 16)
+
+[node name="Barrel" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tiv03")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wh85i")
