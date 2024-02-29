@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://jxkh0g0btx7y"]
+[gd_scene load_steps=31 format=3 uid="uid://jxkh0g0btx7y"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_681tx"]
+[ext_resource type="PackedScene" uid="uid://bwvt1hdp25afc" path="res://GameplayScenes/healthbar.tscn" id="2_mndp7"]
 [ext_resource type="Texture2D" uid="uid://ui8obda4jsh0" path="res://Pixelart/PlayerAnim/attack/attack4.png" id="2_wqv5t"]
 [ext_resource type="Texture2D" uid="uid://dukhf4jpioxfj" path="res://Pixelart/PlayerAnim/Idle/Idle1.png" id="3_8vyxs"]
 [ext_resource type="Texture2D" uid="uid://beipskit43svt" path="res://Pixelart/PlayerAnim/Idle/Idle2.png" id="4_riwgu"]
@@ -137,6 +138,10 @@ size = Vector2(76, 31)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_681tx")
+
+[node name="Healthbar" parent="." instance=ExtResource("2_mndp7")]
+offset_left = 1.0
+offset_right = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false

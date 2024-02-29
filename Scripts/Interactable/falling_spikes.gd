@@ -11,7 +11,7 @@ func _physics_process(delta):
 
 func _on_hitbox_area_entered(area):
 	if area.get_parent() is Player:
-		area.get_parent().die()
+		area.get_parent().take_damage(3)
 		queue_free()
 
 func _on_player_detect_area_entered(area):

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://njwurv8ai1cc"]
+
+[ext_resource type="AudioStream" uid="uid://cubnkurk1iy7f" path="res://Sound/combatmusicSOE.mp3" id="1_2pdil"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_2pdil")
+autoplay = true

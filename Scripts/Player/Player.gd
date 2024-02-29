@@ -11,7 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var attacking = false
 
-@export var max_health = 2
+@export var max_health = 10
 var health = 0
 var can_take_damage = true
 
@@ -26,10 +26,10 @@ func _process(delta):
 func _physics_process(delta):
 	if Input.is_action_just_pressed("Left"):
 		sprite.scale.x = abs(sprite.scale.x) * -1
-		$Area2D.scale.x = abs($Area2D.scale.x) * -1
+		#$Area2D.scale.x = abs($Area2D.scale.x) * -1
 	if Input.is_action_just_pressed("Right"):
 		sprite.scale.x = abs(sprite.scale.x) 
-		$Area2D.scale.x = abs($Area2D.scale.x) 
+		#$Area2D.scale.x = abs($Area2D.scale.x) 
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -76,6 +76,8 @@ func take_damage(damage_amount : int):
 		iframes()
 		
 		health -= damage_amount
+		
+		get_node("Healthbar").update_healthbar(health, max_health)
 		
 		if health <= 0:
 			die()

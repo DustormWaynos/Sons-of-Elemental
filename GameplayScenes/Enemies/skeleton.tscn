@@ -93,7 +93,7 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("10_r0irs")
+texture = ExtResource("7_2gfyu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-14, 24)

@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0j6a5677h2rh"]
+
+[ext_resource type="Script" path="res://GameplayScenes/Enemies/creepfly.gd" id="1_axlbd"]
+[ext_resource type="Texture2D" uid="uid://dy67l50g2tlrk" path="res://Pixelart/Creepfly/Creepfly2.png" id="1_w826s"]
+[ext_resource type="Texture2D" uid="uid://nq3bduq46f6y" path="res://Pixelart/diecreepfly/creepflydie1.png" id="2_3d0am"]
+[ext_resource type="Texture2D" uid="uid://cdxxkiavnkcwk" path="res://Pixelart/Creepfly/Creepfly3.png" id="2_jetxc"]
+[ext_resource type="Texture2D" uid="uid://dse3s7w0iytom" path="res://Pixelart/Creepfly/Sprite-0001-Sheet.png" id="3_pyq1l"]
+[ext_resource type="Texture2D" uid="uid://b4322s06mmtb6" path="res://Pixelart/diecreepfly/creepflydie2.png" id="3_yqo5y"]
+[ext_resource type="Texture2D" uid="uid://da16f0oydugq" path="res://Pixelart/diecreepfly/creepflydie3.png" id="4_gs61a"]
+[ext_resource type="Texture2D" uid="uid://c7nswwjcvft83" path="res://Pixelart/diecreepfly/creepflydie4.png" id="5_loasx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_etfjh"]
+
+[sub_resource type="Animation" id="Animation_ffvwb"]
+resource_name = "Die"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_3d0am"), ExtResource("3_yqo5y"), ExtResource("4_gs61a"), ExtResource("5_loasx")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jcsu6"]
+resource_name = "Idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_pyq1l"), ExtResource("1_w826s"), ExtResource("2_jetxc")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m44jo"]
+_data = {
+"Die": SubResource("Animation_ffvwb"),
+"Idle": SubResource("Animation_jcsu6")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2kqph"]
+radius = 10.0499
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tp7v3"]
+radius = 174.003
+
+[node name="Creepfly" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+script = ExtResource("1_axlbd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_etfjh")
+
+[node name="Container" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Container"]
+libraries = {
+"": SubResource("AnimationLibrary_m44jo")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_loasx")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_2kqph")
+
+[node name="Sight" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
+shape = SubResource("CircleShape2D_tp7v3")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Sight" to="." method="_on_player_in_sight"]
