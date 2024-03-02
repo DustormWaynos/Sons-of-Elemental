@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cxn72ng758yf2"]
+[gd_scene load_steps=35 format=3 uid="uid://cxn72ng758yf2"]
 
 [ext_resource type="PackedScene" uid="uid://jxkh0g0btx7y" path="res://GameplayScenes/Entities/player.tscn" id="1_vvwdr"]
 [ext_resource type="Texture2D" uid="uid://cp6krqokxku1i" path="res://Pixelart/Tilemap/block.png" id="2_o1cbb"]
@@ -23,6 +23,11 @@
 [ext_resource type="PackedScene" uid="uid://dmfa4np20qre6" path="res://GameplayScenes/platformmid.tscn" id="21_nre5f"]
 [ext_resource type="PackedScene" uid="uid://bf4omonvrkbe5" path="res://GameplayScenes/hangingplatform.tscn" id="22_rk6ul"]
 [ext_resource type="PackedScene" uid="uid://c0j6a5677h2rh" path="res://GameplayScenes/Enemies/creepfly.tscn" id="23_1kgx4"]
+[ext_resource type="PackedScene" uid="uid://cihy5vekocx61" path="res://GameplayScenes/Interactable/chickenthighs.tscn" id="24_jhwbg"]
+[ext_resource type="PackedScene" uid="uid://ub3lqp22c6us" path="res://GameplayScenes/Interactable/invincibleplatform.tscn" id="25_kehbs"]
+[ext_resource type="PackedScene" uid="uid://blke3e6t2dhmu" path="res://GameplayScenes/Interactable/movingplatform.tscn" id="26_jyghw"]
+[ext_resource type="PackedScene" uid="uid://cbhm8tvhxash7" path="res://GameplayScenes/Interactable/movingplatformUP.tscn" id="27_xo1eh"]
+[ext_resource type="PackedScene" uid="uid://bwv8dk4au18ur" path="res://GameplayScenes/Enemies/Boss.tscn" id="28_bvkkh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fepcg"]
 texture = ExtResource("2_o1cbb")
@@ -4245,3 +4250,45 @@ position = Vector2(19734, -144)
 
 [node name="Creepfly17" parent="." instance=ExtResource("23_1kgx4")]
 position = Vector2(20079, -119)
+
+[node name="Chickenthighs" parent="." instance=ExtResource("24_jhwbg")]
+position = Vector2(2035, -21)
+
+[node name="Chickenthighs2" parent="." instance=ExtResource("24_jhwbg")]
+position = Vector2(6468, 15)
+
+[node name="Chickenthighs3" parent="." instance=ExtResource("24_jhwbg")]
+position = Vector2(11710, 111)
+
+[node name="Chickenthighs4" parent="." instance=ExtResource("24_jhwbg")]
+position = Vector2(14140, 191)
+
+[node name="Chickenthighs5" parent="." instance=ExtResource("24_jhwbg")]
+position = Vector2(17965, 191)
+
+[node name="Chickenthighs6" parent="." instance=ExtResource("24_jhwbg")]
+position = Vector2(20154, 175)
+
+[node name="Mushroom" parent="." instance=ExtResource("18_lv1dw")]
+position = Vector2(3035, -29)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("25_kehbs")]
+position = Vector2(1576, 144)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("25_kehbs")]
+position = Vector2(3115, -108)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("25_kehbs")]
+position = Vector2(3213, -168)
+
+[node name="movingplatform" parent="." instance=ExtResource("26_jyghw")]
+position = Vector2(3289, 0)
+
+[node name="Node2D" parent="." instance=ExtResource("27_xo1eh")]
+position = Vector2(1935, 164)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("28_bvkkh")]
+position = Vector2(20368, 58)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("28_bvkkh")]
+position = Vector2(1167, 100)

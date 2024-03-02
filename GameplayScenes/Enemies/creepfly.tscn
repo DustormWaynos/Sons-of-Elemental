@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0j6a5677h2rh"]
+[gd_scene load_steps=16 format=3 uid="uid://c0j6a5677h2rh"]
 
 [ext_resource type="Script" path="res://GameplayScenes/Enemies/creepfly.gd" id="1_axlbd"]
 [ext_resource type="Texture2D" uid="uid://dy67l50g2tlrk" path="res://Pixelart/Creepfly/Creepfly2.png" id="1_w826s"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b4322s06mmtb6" path="res://Pixelart/diecreepfly/creepflydie2.png" id="3_yqo5y"]
 [ext_resource type="Texture2D" uid="uid://da16f0oydugq" path="res://Pixelart/diecreepfly/creepflydie3.png" id="4_gs61a"]
 [ext_resource type="Texture2D" uid="uid://c7nswwjcvft83" path="res://Pixelart/diecreepfly/creepflydie4.png" id="5_loasx"]
+[ext_resource type="PackedScene" uid="uid://cuvhrvdtep25p" path="res://GameplayScenes/Enemies/monster_healthbar.tscn" id="9_txpvj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_etfjh"]
 
@@ -71,11 +72,13 @@ radius = 10.0499
 radius = 174.003
 
 [node name="Creepfly" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 4
 collision_layer = 2
 script = ExtResource("1_axlbd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_etfjh")
+disabled = true
 
 [node name="Container" type="Node2D" parent="."]
 
@@ -85,7 +88,7 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("5_loasx")
+texture = ExtResource("2_3d0am")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
@@ -97,6 +100,10 @@ collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
 shape = SubResource("CircleShape2D_tp7v3")
+
+[node name="MonsterHealthbar" parent="." instance=ExtResource("9_txpvj")]
+offset_top = 2.0
+offset_bottom = 2.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Sight" to="." method="_on_player_in_sight"]

@@ -7,6 +7,9 @@ class_name Player
 @export var speed = 300.0
 @export var jump_height = -400
 
+var jump_count = 0
+var max_jump = 2
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var attacking = false
@@ -14,6 +17,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_health = 10
 var health = 0
 var can_take_damage = true
+
+const dash_speed = 700.0
+var dashing = false
+var can_dash = true
 
 func _ready():
 	health = max_health
@@ -26,20 +33,33 @@ func _process(delta):
 func _physics_process(delta):
 	if Input.is_action_just_pressed("Left"):
 		sprite.scale.x = abs(sprite.scale.x) * -1
-		#$Area2D.scale.x = abs($Area2D.scale.x) * -1
+		$AttackArea.scale.x = abs($AttackArea.scale.x) * -1
 	if Input.is_action_just_pressed("Right"):
 		sprite.scale.x = abs(sprite.scale.x) 
-		#$Area2D.scale.x = abs($Area2D.scale.x) 
+		$AttackArea.scale.x = abs($AttackArea.scale.x) 
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	if is_on_floor():
+		jump_count = 0
 
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and jump_count < max_jump:
 		velocity.y = jump_height
-
+		jump_count += 1
+	
+	if Input.is_action_just_pressed("Dash") and can_dash:
+		dashing = true
+		can_dash = false
+		$dash_timer.start()
+		$dash_again_timer.start()
+		
 	var direction = Input.get_axis("Left", "Right")
 	if direction:
-		velocity.x = direction * speed
+		if dashing:
+			velocity.x = direction * dash_speed
+		else:
+			velocity.x = direction * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
@@ -54,7 +74,7 @@ func attack():
 	
 	for area in overlapping_objects:
 		if area.get_parent().is_in_group("Enemies"):
-			area.get_parent().die()
+			area.get_parent().take_damage(1)
 	
 	attacking = true
 	animation.play("Attack")
@@ -70,6 +90,8 @@ func update_animation():
 			animation.play("Jump")
 		if velocity.y > 0:
 			animation.play("Fall")
+		if dashing == true:
+			animation.play("Dash")
 
 func take_damage(damage_amount : int):
 	if can_take_damage:
@@ -93,3 +115,11 @@ func die():
 func _input(event):
 	if event.is_action_pressed("Down") && is_on_floor():
 		position.y += 5
+
+func _on_timer_timeout():
+	dashing = false
+
+func _on_dash_again_timer_timeout():
+	can_dash = true
+
+

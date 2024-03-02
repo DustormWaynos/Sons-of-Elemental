@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwv8dk4au18ur"]
+
+[ext_resource type="Script" path="res://QueenFly.gd" id="1_pbu38"]
+[ext_resource type="Texture2D" uid="uid://dtavx2n2u4vum" path="res://Pixelart/Boss/Boss.png" id="2_jql1l"]
+[ext_resource type="Texture2D" uid="uid://1coane5n8cwr" path="res://Pixelart/CheckpointAnim/STATUE1.png" id="3_lotsd"]
+[ext_resource type="PackedScene" uid="uid://caydmdgjyduqo" path="res://GameplayScenes/Enemies/bosshealth.tscn" id="3_qrxff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lf08v"]
+size = Vector2(68, 68)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6k4c"]
+radius = 276.116
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql0gy"]
+size = Vector2(68, 68)
+
+[sub_resource type="Animation" id="Animation_v0m46"]
+resource_name = "Die"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_lotsd")]
+}
+
+[sub_resource type="Animation" id="Animation_mt1it"]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_jql1l")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a527u"]
+_data = {
+"Die": SubResource("Animation_v0m46"),
+"Idle": SubResource("Animation_mt1it")
+}
+
+[node name="QueenFly" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 4
+collision_layer = 2
+script = ExtResource("1_pbu38")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_lf08v")
+
+[node name="Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect"]
+shape = SubResource("CircleShape2D_o6k4c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ql0gy")
+disabled = true
+
+[node name="Container" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Container"]
+root_node = NodePath("../../Hitbox/CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_a527u")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_lotsd")
+
+[node name="bosshealth" parent="." instance=ExtResource("3_qrxff")]
+offset_left = -35.0
+offset_top = -47.0
+offset_right = -35.0
+offset_bottom = -47.0
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Detect" to="." method="_on_detect_area_entered"]
