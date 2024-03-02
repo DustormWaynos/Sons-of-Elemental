@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://djnqryrdvcghr"]
+[gd_scene load_steps=5 format=3 uid="uid://djnqryrdvcghr"]
 
 [ext_resource type="Script" path="res://Scripts/Mainmenu/main_scene.gd" id="1_4ly74"]
 [ext_resource type="PackedScene" uid="uid://cqclvwm6ivc3l" path="res://GameplayScenes/mainmenubackground.tscn" id="2_hp4qb"]
 [ext_resource type="Texture2D" uid="uid://qgmm4fh8m0rw" path="res://Pixelart/7d547aac624a1284fb71aed341c9ad74.png" id="3_bdnk5"]
+[ext_resource type="PackedScene" uid="uid://bdc0eepl8e8fn" path="res://Sound/bgsong.tscn" id="4_tlgxi"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_4ly74")
@@ -29,6 +30,10 @@ offset_top = 41.0
 offset_right = 801.0
 offset_bottom = 273.0
 texture = ExtResource("3_bdnk5")
+
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("4_tlgxi")]
+stream_paused = false
+max_distance = 10000.0
 
 [connection signal="pressed" from="Trò chơi mới" to="." method="_on_trò_chơi_mới_pressed"]
 [connection signal="pressed" from="Thoát trò chơi" to="." method="_on_thoát_trò_chơi_pressed"]

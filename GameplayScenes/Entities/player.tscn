@@ -1,8 +1,11 @@
-[gd_scene load_steps=30 format=3 uid="uid://jxkh0g0btx7y"]
+[gd_scene load_steps=35 format=3 uid="uid://jxkh0g0btx7y"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_681tx"]
+[ext_resource type="PackedScene" uid="uid://bwvt1hdp25afc" path="res://GameplayScenes/healthbar.tscn" id="2_mndp7"]
 [ext_resource type="Texture2D" uid="uid://ui8obda4jsh0" path="res://Pixelart/PlayerAnim/attack/attack4.png" id="2_wqv5t"]
 [ext_resource type="Texture2D" uid="uid://dukhf4jpioxfj" path="res://Pixelart/PlayerAnim/Idle/Idle1.png" id="3_8vyxs"]
+[ext_resource type="Texture2D" uid="uid://8xgixnoxil8m" path="res://Pixelart/Dash/Dashonly.png" id="3_25ayb"]
+[ext_resource type="Texture2D" uid="uid://1coane5n8cwr" path="res://Pixelart/CheckpointAnim/STATUE1.png" id="3_fjaba"]
 [ext_resource type="Texture2D" uid="uid://beipskit43svt" path="res://Pixelart/PlayerAnim/Idle/Idle2.png" id="4_riwgu"]
 [ext_resource type="Texture2D" uid="uid://h4hh1f1nv476" path="res://Pixelart/PlayerAnim/Idle/Idle3.png" id="5_abmom"]
 [ext_resource type="Texture2D" uid="uid://bywc7r6t1klqa" path="res://Pixelart/PlayerAnim/Fall-Sheet.png" id="6_dt8yn"]
@@ -54,6 +57,39 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1dnxf"]
+resource_name = "Dash"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_25ayb")]
+}
+
+[sub_resource type="Animation" id="Animation_4581j"]
+resource_name = "Doublejump"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_fjaba")]
 }
 
 [sub_resource type="Animation" id="Animation_q2u4m"]
@@ -125,6 +161,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ndawt"]
 _data = {
 "Attack": SubResource("Animation_ter22"),
+"Dash": SubResource("Animation_1dnxf"),
+"Doublejump": SubResource("Animation_4581j"),
 "Fall": SubResource("Animation_q2u4m"),
 "Idle": SubResource("Animation_xbxyd"),
 "Jump": SubResource("Animation_8s01y"),
@@ -132,11 +170,15 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfumq"]
-size = Vector2(76, 31)
+size = Vector2(31, 47)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_681tx")
+
+[node name="Healthbar" parent="." instance=ExtResource("2_mndp7")]
+offset_left = 1.0
+offset_right = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
@@ -168,7 +210,7 @@ shape = SubResource("CapsuleShape2D_gxd5j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
-texture = ExtResource("18_ysf47")
+texture = ExtResource("3_25ayb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -179,5 +221,13 @@ libraries = {
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-2, 11.5)
+position = Vector2(25.5, 10.5)
 shape = SubResource("RectangleShape2D_bfumq")
+
+[node name="dash_again_timer" type="Timer" parent="."]
+
+[node name="dash_timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="dash_again_timer" to="." method="_on_dash_again_timer_timeout"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_timer_timeout"]
