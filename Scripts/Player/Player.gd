@@ -31,10 +31,10 @@ func _process(delta):
 		attack()
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("Left"):
+	if Input.is_action_just_pressed("ui_left"):
 		sprite.scale.x = abs(sprite.scale.x) * -1
 		$AttackArea.scale.x = abs($AttackArea.scale.x) * -1
-	if Input.is_action_just_pressed("Right"):
+	if Input.is_action_just_pressed("ui_right"):
 		sprite.scale.x = abs(sprite.scale.x) 
 		$AttackArea.scale.x = abs($AttackArea.scale.x) 
 	
