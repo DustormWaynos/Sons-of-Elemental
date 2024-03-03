@@ -1929,7 +1929,7 @@ theme_override_font_sizes/font_size = 20
 text = "0"
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressHealthBar" parent="UIManager" instance=ExtResource("10_j0uvy")]
+[node name="Control" parent="UIManager" instance=ExtResource("10_j0uvy")]
 offset_left = 5.0
 offset_top = 40.0
 offset_right = 45.0

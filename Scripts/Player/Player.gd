@@ -54,7 +54,7 @@ func _physics_process(delta):
 		$dash_timer.start()
 		$dash_again_timer.start()
 		
-	var direction = Input.get_axis("Left", "Right")
+	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		if dashing:
 			velocity.x = direction * dash_speed
@@ -100,9 +100,14 @@ func take_damage(damage_amount : int):
 		health -= damage_amount
 		
 		get_node("Healthbar").update_healthbar(health, max_health)
-		
+		get_node("../UIManager/ProgressHealthBar").update_healthbar(health, max_health)
+				
 		if health <= 0:
 			die()
+
+func eatChicken():
+	health += 1;
+	get_node("../UIManager/ProgressHealthBar").update_healthbar(health, max_health)
 
 func iframes():
 	can_take_damage = false
@@ -110,6 +115,7 @@ func iframes():
 	can_take_damage = true
 
 func die():
+	get_node("../UIManager/ProgressHealthBar")._ready()
 	GameManager.respawn_player()
 
 func _input(event):
