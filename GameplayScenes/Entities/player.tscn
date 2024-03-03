@@ -177,6 +177,7 @@ collision_layer = 2
 script = ExtResource("1_681tx")
 
 [node name="Healthbar" parent="." instance=ExtResource("2_mndp7")]
+visible = false
 offset_left = 1.0
 offset_right = 1.0
 
@@ -210,7 +211,7 @@ shape = SubResource("CapsuleShape2D_gxd5j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
-texture = ExtResource("3_25ayb")
+texture = ExtResource("18_ysf47")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
