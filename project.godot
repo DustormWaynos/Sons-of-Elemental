@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Sons of Element 2"
+config/name="Sons of Element"
 run/main_scene="res://WorldScenes/WorldScenes/main_scene.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 
