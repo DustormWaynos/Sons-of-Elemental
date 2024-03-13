@@ -32,6 +32,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player = get_node("../Player")
 
 var player_in_sight
+var is_player_dead = false;
 
 func _ready():
 	$Timer.set_one_shot(false)
@@ -125,7 +126,7 @@ func getspawn2():
 	add_child(spawned_ball)
 	
 func dealContinuousDamage():
-	if canDealDamage and is_alive and player.is_in_group("Player"):
+	if canDealDamage and is_alive and player.is_in_group("Player") and !is_player_dead:
 		player.take_damage(5)
 
 func _on_timer_timeout():
@@ -141,6 +142,7 @@ func _on_hitbox_area_exited(area):
 func _on_exit_area_area_exited(area):
 	if area.get_parent().is_in_group("Player") and !dead and is_music_playing:
 		$CanvasLayer.get_child(0).hide()
+		is_player_dead = false;
 		speed = 0
 		is_music_playing = false
 		health = max_health
@@ -158,5 +160,7 @@ func _on_exit_area_area_exited(area):
 func returnToInitialPosition():
 	global_position = initial_position
 
+func set_is_player_dead(is_dead):
+	is_player_dead = is_dead;
 
 
