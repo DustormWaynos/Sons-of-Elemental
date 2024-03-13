@@ -155,6 +155,7 @@ func die():
 		attacking = false
 		bowshooting = false
 	animation.play("Die")
+	get_node("../Queen Fly").set_is_player_dead(true)
 	self.remove_from_group("Player")
 	$Sound/Die.play()
 
