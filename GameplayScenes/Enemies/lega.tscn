@@ -1,0 +1,157 @@
+[gd_scene load_steps=17 format=3 uid="uid://btkg8en12141q"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Lega.gd" id="1_jng5l"]
+[ext_resource type="Texture2D" uid="uid://dlnfvxj28rv4p" path="res://Pixelart/Lega/Lega3.png" id="2_637ox"]
+[ext_resource type="Texture2D" uid="uid://dwt1x2ecbxb80" path="res://Pixelart/Lega/LegaDie/DIE1.png" id="3_4veyn"]
+[ext_resource type="Texture2D" uid="uid://b63pxa4n46rse" path="res://Pixelart/Lega/Lega1.png" id="3_osnu4"]
+[ext_resource type="Texture2D" uid="uid://dy2a3bwmb3dcg" path="res://Pixelart/Lega/LegaDie/DIE3.png" id="4_1gcxa"]
+[ext_resource type="Texture2D" uid="uid://b4cnnwpr612bb" path="res://Pixelart/Lega/Lega2.png" id="4_wf56n"]
+[ext_resource type="Texture2D" uid="uid://ct167r8vlsjd1" path="res://Pixelart/Lega/LegaDie/DIE2.png" id="5_23goa"]
+[ext_resource type="Texture2D" uid="uid://brdeqq4uf5yga" path="res://Pixelart/Lega/Legahit1.png" id="5_daf22"]
+[ext_resource type="AudioStream" uid="uid://bsu4mbdsrgvu" path="res://Sound/EnemiesSound/LegaHurt.wav" id="8_1nawm"]
+[ext_resource type="PackedScene" uid="uid://gx5nop7httfx" path="res://GameplayScenes/monster_health_bar.tscn" id="9_xmh6y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl3vk"]
+size = Vector2(31, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mm21p"]
+size = Vector2(39, 29)
+
+[sub_resource type="Animation" id="Animation_don2s"]
+resource_name = "Die"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_daf22"), ExtResource("3_4veyn"), ExtResource("4_1gcxa"), ExtResource("5_23goa")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6usqq"]
+resource_name = "Fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_osnu4"), ExtResource("4_wf56n"), ExtResource("2_637ox"), ExtResource("3_osnu4")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pj7v3"]
+resource_name = "Hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_daf22"), ExtResource("3_osnu4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:shooting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gk8t"]
+_data = {
+"Die": SubResource("Animation_don2s"),
+"Fire": SubResource("Animation_6usqq"),
+"Hit": SubResource("Animation_pj7v3")
+}
+
+[node name="Lega" type="StaticBody2D" groups=["Enemies"]]
+z_index = 5
+collision_layer = 2
+script = ExtResource("1_jng5l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, 1.5)
+shape = SubResource("RectangleShape2D_vl3vk")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_daf22")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3.5, 1.5)
+shape = SubResource("RectangleShape2D_mm21p")
+
+[node name="Firepoint" type="Marker2D" parent="."]
+position = Vector2(-16, -5)
+scale = Vector2(-1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1gk8t")
+}
+next/Hit = &"Fire"
+
+[node name="MonsterHealthBar" parent="." instance=ExtResource("9_xmh6y")]
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 19.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("8_1nawm")
+volume_db = 1.0
+max_distance = 500.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

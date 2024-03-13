@@ -13,6 +13,7 @@ func activate():
 	GameManager.current_checkpoint = self
 	activated = true
 	$AnimationPlayer.play("Activated")
+	$Checkpoint.play()
 
 func _on_area_2d_area_entered(area):
 	if area.get_parent() is Player && !activated:

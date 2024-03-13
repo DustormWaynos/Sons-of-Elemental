@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://j2d1p5armosl"]
+
+[ext_resource type="Script" path="res://Scripts/BlockPlayer/Witchwall.gd" id="1_31rp0"]
+[ext_resource type="Texture2D" uid="uid://b5u8urbuemev" path="res://Pixelart/WallBoss/Circle1.png" id="2_avuaw"]
+[ext_resource type="Texture2D" uid="uid://jakkae3xjheq" path="res://Pixelart/WallBoss/Circle2.png" id="3_vnrba"]
+
+[sub_resource type="Animation" id="Animation_mwimk"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("2_avuaw"), ExtResource("3_vnrba")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m0tko"]
+_data = {
+"Idle": SubResource("Animation_mwimk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31j4y"]
+size = Vector2(20, 554.925)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_31rp0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_m0tko")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.0405579, 257)
+texture = ExtResource("2_avuaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 267.462)
+shape = SubResource("RectangleShape2D_31j4y")

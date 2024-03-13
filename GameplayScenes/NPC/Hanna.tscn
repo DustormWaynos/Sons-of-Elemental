@@ -1,0 +1,75 @@
+[gd_scene load_steps=13 format=3 uid="uid://dqqlm2pnag5y3"]
+
+[ext_resource type="Script" path="res://Scripts/NPC/Hanna.gd" id="1_tdqqe"]
+[ext_resource type="Texture2D" uid="uid://df47r67t5s0b7" path="res://Pixelart/HannaIdle/Idle1.png" id="2_ndvts"]
+[ext_resource type="Texture2D" uid="uid://dq6gon0uoqlia" path="res://Pixelart/HannaIdle/Idle2.png" id="3_h6y1f"]
+[ext_resource type="Texture2D" uid="uid://43qwn1nwsbce" path="res://Pixelart/HannaIdle/Idle3.png" id="4_bnvii"]
+[ext_resource type="AudioStream" uid="uid://cpeoauqcw5wml" path="res://Sound/NPCsound/NPCsound.wav" id="4_t1c1b"]
+[ext_resource type="Texture2D" uid="uid://bpaipimmxpc4s" path="res://Pixelart/HannaIdle/Idle4.png" id="5_kfi11"]
+[ext_resource type="Texture2D" uid="uid://d24l6po3nd535" path="res://Pixelart/HannaIdle/Idle5.png" id="6_rha1b"]
+[ext_resource type="FontFile" uid="uid://d035hso3t5o8i" path="res://Font/SVN-Coder's Crux.otf" id="7_onstd"]
+
+[sub_resource type="Animation" id="Animation_wt8ij"]
+resource_name = "Idle"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_ndvts"), ExtResource("3_h6y1f"), ExtResource("4_bnvii"), ExtResource("5_kfi11"), ExtResource("6_rha1b")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgpyj"]
+_data = {
+"Idle": SubResource("Animation_wt8ij")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_40nar"]
+line_spacing = 5.0
+font = ExtResource("7_onstd")
+font_size = 15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0drn"]
+size = Vector2(94, 48)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_tdqqe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_pgpyj")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ndvts")
+
+[node name="HannaLabel" type="Label" parent="."]
+offset_left = -100.0
+offset_top = -41.0
+offset_right = -60.0
+offset_bottom = -18.0
+label_settings = SubResource("LabelSettings_40nar")
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 5
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6, 11)
+shape = SubResource("RectangleShape2D_k0drn")
+
+[node name="Ting" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_t1c1b")
+volume_db = 10.0
+pitch_scale = 1.5
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

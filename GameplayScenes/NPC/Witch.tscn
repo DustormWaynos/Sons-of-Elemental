@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://dxln7x5y62702"]
+
+[ext_resource type="Script" path="res://Scripts/NPC/Witch.gd" id="1_h11yj"]
+[ext_resource type="Texture2D" uid="uid://dj0vlyxfjbbwa" path="res://Pixelart/Witch/Idle1.png" id="2_lh8rh"]
+[ext_resource type="Texture2D" uid="uid://0aerelwqpvjq" path="res://Pixelart/Witch/Idle2.png" id="3_bpcpi"]
+[ext_resource type="Texture2D" uid="uid://dx11iehni84ny" path="res://Pixelart/Witch/Idle3.png" id="4_tr6nn"]
+[ext_resource type="Texture2D" uid="uid://co0d4gh70jiiy" path="res://Pixelart/Witch/Idle4.png" id="5_mmyy4"]
+[ext_resource type="AudioStream" uid="uid://cpeoauqcw5wml" path="res://Sound/NPCsound/NPCsound.wav" id="6_h3a70"]
+[ext_resource type="FontFile" uid="uid://d035hso3t5o8i" path="res://Font/SVN-Coder's Crux.otf" id="7_6fjeb"]
+
+[sub_resource type="Animation" id="Animation_lmtdp"]
+resource_name = "Idle"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_lh8rh"), ExtResource("3_bpcpi"), ExtResource("4_tr6nn"), ExtResource("5_mmyy4")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_agprj"]
+_data = {
+"Idle": SubResource("Animation_lmtdp")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbhsa"]
+size = Vector2(102.885, 53.6071)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rmlrb"]
+font = ExtResource("7_6fjeb")
+font_size = 15
+
+[node name="Witch" type="Node2D"]
+script = ExtResource("1_h11yj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lh8rh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_agprj")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-30.5067, 8.09321)
+shape = SubResource("RectangleShape2D_dbhsa")
+
+[node name="Ting" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_h3a70")
+volume_db = 10.0
+pitch_scale = 0.9
+
+[node name="WitchLabel" type="Label" parent="."]
+offset_left = -87.6879
+offset_top = -48.0568
+offset_right = -47.6879
+offset_bottom = -25.0568
+label_settings = SubResource("LabelSettings_rmlrb")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -11,6 +11,8 @@ var dead = false
 var max_health = 3
 var health
 
+var should_flip_monster_healthbar: bool = true
+
 
 func _ready():
 	health = max_health
@@ -34,16 +36,20 @@ func flip():
 		speed = abs(speed)
 	else:
 		speed = abs(speed) * -1
+	
+	$Container/SkeletonHealthBar.scale.x = 1.0
 
 func _on_hitbox_area_entered(area):
-	if area.get_parent() is Player && !dead:
+	if area.get_parent().is_in_group("Player") && !dead:
 		area.get_parent().take_damage(1)
 	
 func take_damage(damage_amount):
 	
 	health -= damage_amount
-	
-	get_node("MonsterHealthbar").update_healthbar(health, max_health)
+	$Container/SkeletonHealthBar.value = health
+	$Container/SkeletonHealthBar.max_value = max_health
+	$AnimationPlayer.play("Hit")
+	$Hurt.play()
 	
 	if health <= 0:
 		die()
@@ -52,3 +58,5 @@ func die():
 	dead = true
 	speed = 0
 	$AnimationPlayer.play("Die")
+	$Hurt.play()
+	self.remove_from_group("Enemies")

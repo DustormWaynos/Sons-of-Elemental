@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwxfy5cnejk7m"]
+
+[ext_resource type="Script" path="res://Scripts/loadingscreen/LoadingScreen.gd" id="1_oo3ku"]
+[ext_resource type="Texture2D" uid="uid://dwxgn4o6hpurh" path="res://Pixelart/LOADINGBAR/LOADINGBARUNDER.png" id="2_cr5be"]
+[ext_resource type="Texture2D" uid="uid://b3dkl7f5hxxbx" path="res://Pixelart/LOADINGBAR/LOADINGBAR.png" id="3_8btnq"]
+[ext_resource type="Texture2D" uid="uid://df27rld6ttl54" path="res://Pixelart/LOADINGBAR/LOADINGBARPROGRESS.png" id="4_ykqiy"]
+[ext_resource type="FontFile" uid="uid://d035hso3t5o8i" path="res://Font/SVN-Coder's Crux.otf" id="5_ucaot"]
+[ext_resource type="Texture2D" uid="uid://sme8emvj4sqy" path="res://Picture/Dashtips.png" id="6_l3sxj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_giscv"]
+font = ExtResource("5_ucaot")
+font_size = 25
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_oo3ku")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 964.0
+offset_bottom = 543.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 68.0
+offset_right = 666.0
+offset_bottom = 316.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 448.0
+offset_right = 757.0
+offset_bottom = 488.0
+texture_under = ExtResource("2_cr5be")
+texture_over = ExtResource("3_8btnq")
+texture_progress = ExtResource("4_ykqiy")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 123.264
+offset_top = 376.0
+offset_right = 863.264
+offset_bottom = 399.0
+text = "Tips: Using Dash at the right time will help you avoid damage from enemies
+"
+label_settings = SubResource("LabelSettings_giscv")
+
+[node name="Dashtips" type="Sprite2D" parent="."]
+position = Vector2(480, 192)
+scale = Vector2(0.424138, 0.424138)
+texture = ExtResource("6_l3sxj")
