@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed = 160.0
+@export var speed = 200.0
 var current_speed = 0.0
 
 @onready var spawn_pos = global_position
@@ -11,7 +11,7 @@ func _physics_process(delta):
 
 func _on_hitbox_area_entered(area):
 	if area.get_parent() is Player:
-		area.get_parent().take_damage(3)
+		area.get_parent().take_damage(5)
 		queue_free()
 
 func _on_player_detect_area_entered(area):

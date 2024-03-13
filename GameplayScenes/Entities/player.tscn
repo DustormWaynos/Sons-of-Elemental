@@ -1,7 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://jxkh0g0btx7y"]
+[gd_scene load_steps=62 format=3 uid="uid://jxkh0g0btx7y"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.gd" id="1_681tx"]
-[ext_resource type="PackedScene" uid="uid://bwvt1hdp25afc" path="res://GameplayScenes/healthbar.tscn" id="2_mndp7"]
+[ext_resource type="Texture2D" uid="uid://b2dvgv36fdp0f" path="res://Pixelart/DisapearDie/DisapearDie0.png" id="2_ca7lg"]
 [ext_resource type="Texture2D" uid="uid://ui8obda4jsh0" path="res://Pixelart/PlayerAnim/attack/attack4.png" id="2_wqv5t"]
 [ext_resource type="Texture2D" uid="uid://dukhf4jpioxfj" path="res://Pixelart/PlayerAnim/Idle/Idle1.png" id="3_8vyxs"]
 [ext_resource type="Texture2D" uid="uid://8xgixnoxil8m" path="res://Pixelart/Dash/Dashonly.png" id="3_25ayb"]
@@ -11,10 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://bywc7r6t1klqa" path="res://Pixelart/PlayerAnim/Fall-Sheet.png" id="6_dt8yn"]
 [ext_resource type="Texture2D" uid="uid://d36s8k6qq8pu2" path="res://Pixelart/PlayerAnim/Idle/Idle4.png" id="6_h4r06"]
 [ext_resource type="Texture2D" uid="uid://ns7wgsjkgtty" path="res://Pixelart/PlayerAnim/Idle/Idle5.png" id="7_mvfeg"]
+[ext_resource type="Texture2D" uid="uid://c1h17gbneqqgw" path="res://Pixelart/DisapearDie/DisapearDie.png" id="8_klumc"]
 [ext_resource type="Texture2D" uid="uid://bk7c4hm3p6sqh" path="res://Pixelart/PlayerAnim/Run/Run1.png" id="8_xij3g"]
 [ext_resource type="Texture2D" uid="uid://cajj46dyr6la1" path="res://Pixelart/PlayerAnim/Run/Run2.png" id="9_1ge8n"]
+[ext_resource type="Texture2D" uid="uid://cy6tdtssl313x" path="res://Pixelart/DisapearDie/DisapearDie2.png" id="9_xceq1"]
 [ext_resource type="Texture2D" uid="uid://bnwriy0uxirb6" path="res://Pixelart/PlayerAnim/Run/run3.png" id="10_d6ugk"]
+[ext_resource type="Texture2D" uid="uid://1n7e8h45jfjg" path="res://Pixelart/DisapearDie/DisapearDie3.png" id="10_tm6ov"]
 [ext_resource type="Texture2D" uid="uid://dd5pxe4coa6x3" path="res://Pixelart/PlayerAnim/Run/run4.png" id="11_fle7p"]
+[ext_resource type="Texture2D" uid="uid://b06r7dh1deowe" path="res://Pixelart/bowattack1.png" id="11_p3muq"]
+[ext_resource type="Texture2D" uid="uid://ckumjcsk2whxu" path="res://Pixelart/DisapearDie/Invincible.png" id="11_v4k66"]
 [ext_resource type="Texture2D" uid="uid://cg3lgq1j6i8x" path="res://Pixelart/PlayerAnim/Run/run5.png" id="12_h1mp0"]
 [ext_resource type="Texture2D" uid="uid://jgatdjmk6px2" path="res://Pixelart/PlayerAnim/Jump-Sheet.png" id="12_i7dgt"]
 [ext_resource type="Texture2D" uid="uid://cgrxbjy70hwd8" path="res://Pixelart/PlayerAnim/Run/run6.png" id="13_hhgmw"]
@@ -23,6 +28,23 @@
 [ext_resource type="Texture2D" uid="uid://cqd2q5m6maag2" path="res://Pixelart/PlayerAnim/attack/attack1.png" id="18_ysf47"]
 [ext_resource type="Texture2D" uid="uid://28sclosstx0r" path="res://Pixelart/PlayerAnim/attack/attack2.png" id="19_s1etg"]
 [ext_resource type="Texture2D" uid="uid://b5w2omvqketg" path="res://Pixelart/PlayerAnim/attack/attack3.png" id="20_6l8au"]
+[ext_resource type="Texture2D" uid="uid://dj3e6n5uutkwb" path="res://Pixelart/bowattack.png" id="24_0dklj"]
+[ext_resource type="AudioStream" uid="uid://btw86mwknrawf" path="res://Sound/Player/Dash.wav" id="25_xpwya"]
+[ext_resource type="AudioStream" uid="uid://blur4tcp8ov6v" path="res://Sound/Player/MeleeAttack.mp3" id="25_xxrly"]
+[ext_resource type="AudioStream" uid="uid://rgqg41mmmlcw" path="res://Sound/Player/Run (1).mp3" id="26_bm2ea"]
+[ext_resource type="AudioStream" uid="uid://ts1xjw2p4yl5" path="res://Sound/Player/BowandArrow.mp3" id="26_na3xm"]
+[ext_resource type="AudioStream" uid="uid://cymwnh0njl5ax" path="res://Sound/Player/Jump.mp3" id="27_1ye8u"]
+[ext_resource type="Script" path="res://Scripts/UI/Respawn.gd" id="30_lmfwb"]
+[ext_resource type="Texture2D" uid="uid://dvudjkpu73s8w" path="res://Pixelart/PlayerHit/Hit1.png" id="30_qqveg"]
+[ext_resource type="Texture2D" uid="uid://c4wath6pfcnq8" path="res://Pixelart/PlayerHit/Hit2.png" id="31_8gicu"]
+[ext_resource type="Texture2D" uid="uid://co4ud4yj5yty7" path="res://Pixelart/DiedScreen/DiedScreen.png" id="35_g34l8"]
+[ext_resource type="FontFile" uid="uid://d035hso3t5o8i" path="res://Font/SVN-Coder's Crux.otf" id="37_8plbg"]
+[ext_resource type="Texture2D" uid="uid://cx2gamcobhwvl" path="res://Pixelart/DiedScreen/DiedButton.png" id="37_yytnp"]
+[ext_resource type="Texture2D" uid="uid://do3dyauwc665y" path="res://Pixelart/DiedScreen/DiedButtonPress.png" id="38_n5da1"]
+[ext_resource type="Texture2D" uid="uid://dxrpocfhsuflq" path="res://Pixelart/DiedScreen/DiedButtonHover.png" id="39_7x6sk"]
+[ext_resource type="AudioStream" uid="uid://capjway3247cu" path="res://Sound/547829__dude_law__bruh-sound-effect-2.mp3" id="41_241iv"]
+[ext_resource type="AudioStream" uid="uid://ccmcsff62g8m0" path="res://Sound/Player/649543__ajanhallinta__ouch.wav" id="43_mkxmg"]
+[ext_resource type="AudioStream" uid="uid://cai722p578byl" path="res://Sound/Interactable/Eat.wav" id="45_ie2dt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1kmlj"]
 radius = 11.0
@@ -61,7 +83,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_1dnxf"]
 resource_name = "Dash"
-length = 0.001
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -74,6 +96,46 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("3_25ayb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:dashing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w534m"]
+resource_name = "Die"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_ca7lg"), ExtResource("8_klumc"), ExtResource("9_xceq1"), ExtResource("10_tm6ov"), ExtResource("11_v4k66")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1.3, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4581j"]
@@ -106,6 +168,50 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("6_dt8yn")]
+}
+
+[sub_resource type="Animation" id="Animation_ri24m"]
+resource_name = "Fire"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("24_0dklj"), ExtResource("11_p3muq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:bowshooting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_oshtq"]
+resource_name = "Hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("30_qqveg"), ExtResource("31_8gicu")]
 }
 
 [sub_resource type="Animation" id="Animation_xbxyd"]
@@ -162,8 +268,11 @@ tracks/0/keys = {
 _data = {
 "Attack": SubResource("Animation_ter22"),
 "Dash": SubResource("Animation_1dnxf"),
+"Die": SubResource("Animation_w534m"),
 "Doublejump": SubResource("Animation_4581j"),
 "Fall": SubResource("Animation_q2u4m"),
+"Fire": SubResource("Animation_ri24m"),
+"Hit": SubResource("Animation_oshtq"),
 "Idle": SubResource("Animation_xbxyd"),
 "Jump": SubResource("Animation_8s01y"),
 "Run": SubResource("Animation_kpejs")
@@ -172,14 +281,20 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bfumq"]
 size = Vector2(31, 47)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_mt18n"]
+font = ExtResource("37_8plbg")
+font_size = 30
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_upt8m"]
+font = ExtResource("37_8plbg")
+font_size = 25
+font_color = Color(0, 0.235294, 0, 1)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(673, 167)
 collision_layer = 2
 script = ExtResource("1_681tx")
-
-[node name="Healthbar" parent="." instance=ExtResource("2_mndp7")]
-visible = false
-offset_left = 1.0
-offset_right = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
@@ -193,7 +308,7 @@ position = Vector2(-14, -31)
 zoom = Vector2(1.6, 1.6)
 limit_left = 640
 limit_top = -310
-limit_right = 20500
+limit_right = 21900
 limit_bottom = 280
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -211,7 +326,7 @@ shape = SubResource("CapsuleShape2D_gxd5j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
-texture = ExtResource("18_ysf47")
+texture = ExtResource("3_8vyxs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -227,8 +342,86 @@ shape = SubResource("RectangleShape2D_bfumq")
 
 [node name="dash_again_timer" type="Timer" parent="."]
 
-[node name="dash_timer" type="Timer" parent="."]
+[node name="dash_timer" type="Timer" parent="." groups=["Player"]]
 wait_time = 0.2
+
+[node name="ArrowPoint" type="Marker2D" parent="."]
+position = Vector2(3, 3)
+
+[node name="Respawn" type="CanvasLayer" parent="."]
+script = ExtResource("30_lmfwb")
+
+[node name="DiedScreen" type="Sprite2D" parent="Respawn"]
+position = Vector2(480, 266)
+texture = ExtResource("35_g34l8")
+
+[node name="TextureButton" type="TextureButton" parent="Respawn/DiedScreen"]
+offset_left = -56.0
+offset_top = 17.0
+offset_right = 58.0
+offset_bottom = 43.0
+texture_normal = ExtResource("37_yytnp")
+texture_pressed = ExtResource("38_n5da1")
+texture_hover = ExtResource("39_7x6sk")
+
+[node name="Label" type="Label" parent="Respawn/DiedScreen/TextureButton"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -37.0
+offset_right = 121.0
+offset_bottom = -14.0
+text = "YOU DIED!"
+label_settings = SubResource("LabelSettings_mt18n")
+
+[node name="Label" type="Label" parent="Respawn/DiedScreen/TextureButton/Label"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 42.0
+offset_right = 94.0
+offset_bottom = 65.0
+text = "Resurrect"
+label_settings = SubResource("LabelSettings_upt8m")
+
+[node name="Sound" type="Node2D" parent="."]
+
+[node name="Pain" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("43_mkxmg")
+volume_db = 0.5
+pitch_scale = 1.2
+max_distance = 500.0
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("25_xpwya")
+volume_db = 12.0
+pitch_scale = 0.65
+
+[node name="BowShoot" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("26_na3xm")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("27_1ye8u")
+volume_db = -4.0
+pitch_scale = 1.5
+
+[node name="Run" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("26_bm2ea")
+volume_db = 1.0
+pitch_scale = 0.95
+max_distance = 500.0
+
+[node name="MeleeAttack" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("25_xxrly")
+volume_db = -4.0
+pitch_scale = 2.5
+max_distance = 500.0
+
+[node name="Die" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("41_241iv")
+
+[node name="Eat" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("45_ie2dt")
+volume_db = 10.0
 
 [connection signal="timeout" from="dash_again_timer" to="." method="_on_dash_again_timer_timeout"]
 [connection signal="timeout" from="dash_timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Respawn/DiedScreen/TextureButton" to="Respawn" method="_on_texture_button_pressed"]

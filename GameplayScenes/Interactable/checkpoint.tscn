@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://un76wuffl8x7"]
+[gd_scene load_steps=9 format=3 uid="uid://un76wuffl8x7"]
 
 [ext_resource type="Script" path="res://Scripts/Interactable/checkpoint.gd" id="1_8k18f"]
 [ext_resource type="Texture2D" uid="uid://dxc8vtnapb7fg" path="res://Pixelart/CheckpointAnim/STATUE3.png" id="2_jgooh"]
 [ext_resource type="Texture2D" uid="uid://nyevqms3n0bc" path="res://Pixelart/CheckpointAnim/STATUE2.png" id="3_6cs50"]
 [ext_resource type="Texture2D" uid="uid://1coane5n8cwr" path="res://Pixelart/CheckpointAnim/STATUE1.png" id="4_mrh44"]
+[ext_resource type="AudioStream" uid="uid://dqp5wbua4gltp" path="res://Sound/Interactable/Checkpoint (2).wav" id="5_h0xss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3prl"]
 size = Vector2(18, 56)
@@ -47,5 +48,11 @@ shape = SubResource("RectangleShape2D_i3prl")
 libraries = {
 "": SubResource("AnimationLibrary_eme1f")
 }
+
+[node name="Checkpoint" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_h0xss")
+volume_db = -1.0
+pitch_scale = 1.5
+max_distance = 500.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
